@@ -3,6 +3,16 @@ from flask import Flask,request,jsonify
 from flask_cors import CORS
 from sklearn.linear_model import LinearRegression
 import pandas as pd
+from supabase import create_client
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+tabela = create_client(
+    os.getenv("SUPABASE_URL"),
+    os.getenv("SUPABASE_KEY"),
+)
 
 #Habilitando a execução da API
 app = Flask(__name__)
@@ -39,6 +49,19 @@ def prever():
             "num_revisoes":[dados["num_revisoes"]]
         })
         preco = modelo.predict(carro)[0]
+        preco_formatado = round(float(preco),2)
+        #-----BANCO DE DADOS-----
+        registros = {
+            "ano":dados["ano"],
+            "quilometragem":dados["quilometragem"],
+            "motor":dados["motor"],
+            "num_revisoes":dados["num_revisoes"],
+            "preco":preco_formatado
+        }
+        tabela.table("historico_previsoes").insert(registros).execute()
+        
+  
+        
         return jsonify({"preco":round(float(preco),2)})
    
     except Exception as erro:
