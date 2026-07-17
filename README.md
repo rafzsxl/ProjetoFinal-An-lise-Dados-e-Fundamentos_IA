@@ -1,165 +1,78 @@
-# Projeto de Previsão de Valor de Carros Usados
+# Projeto Final: Análise de Dados e Fundamentos de IA 🚗🤖
 
-## Visão geral👀👀
-
-Este projeto tem como objetivo prever o valor de um carro usado com base em características importantes do veículo, como:
-
-- ano de fabricação
-- quilometragem
-- tamanho do motor
-- quantidade de revisões
-
-A ideia é transformar esses dados em uma estimativa de preço, permitindo que o usuário tenha uma referência rápida e prática para avaliar o valor de um automóvel.
+Este repositório contém o projeto final focado na criação, treinamento e deploy de um modelo de Machine Learning para a estimativa de preços de veículos. O projeto contempla desde a construção de uma API robusta em Python até uma interface web moderna e intuitiva para o usuário final.
 
 ---
 
-## Como o projeto funciona🤷‍♂️
+## 🚀 Demonstração & Links Úteis
 
-O projeto é composto por uma API desenvolvida em Python utilizando Flask. A aplicação faz o seguinte:
-
-1. Carrega um dataset com informações de carros usados.
-2. Seleciona as variáveis que serão usadas para treinar o modelo.
-3. Treina um modelo de Machine Learning chamado Regressão Linear.
-4. Expondo uma API para receber dados e retornar uma previsão de preço.
-
-Em termos simples, o modelo aprende a relação entre as características do carro e o preço, e depois consegue estimar o valor de um novo carro a partir dessas informações.
+- **URL do Deploy (API):** (https://carrovalor.lovable.app/))
+- **Interface Web:** Desenvolvida integrada ao modelo preditivo.
 
 ---
 
-## Como foi feito este projeto🔎🔎🔎
+## 🛠️ Tecnologias Utilizadas
 
-O projeto foi construído com uma abordagem simples e objetiva:
+- **Linguagem Principal:** Python 3
+- **Framework Web (API):** Flask
+- **Segurança & Integração:** Flask-CORS (Cross-Origin Resource Sharing)
+- **Inteligência Artificial:** Scikit-Learn (`LinearRegression`)
+- **Manipulação de Dados:** Pandas
+- **Banco de Dados / Backend BaaS:** Supabase (`supabase-py`)
+- **Gerenciamento de Variáveis de Ambiente:** Python-dotenv
+- **Servidor de Produção WSGI:** Gunicorn
+- **Ferramentas de Teste:** Postman
+- **Hospedagem/Deploy:** Render
+- **Interface Base:** Lovable (Frontend integrado)
+---
 
-- O dataset foi carregado com a biblioteca pandas.
-- O modelo de predição foi treinado com scikit-learn.
-- A API foi criada com Flask.
-- O CORS foi habilitado para permitir que o frontend consiga consumir a API.
+## 📦 Estrutura e Funcionalidades
 
-Essa estrutura é bastante comum em projetos de IA e automação, pois separa bem a parte de dados, o modelo e a interface de acesso.
+### 1. Interface do Usuário (Frontend)
+Uma aplicação web intuitiva onde o usuário pode selecionar as especificações do veículo, como:
+- Ano do veículo
+- Quilometragem
+- Motorização (ex: 1.4, 2.0)
+- Número de revisões feitas
+- Cor do Ford GT40
+
+O modelo de Machine Learning analisa os dados em tempo real e retorna a estimativa de valor em segundos.
+
+### 2. API Backend (Flask + IA + Supabase)
+O coração do projeto é uma API Flask que:
+- Permite requisições de diferentes origens de forma segura usando **CORS**.
+- Utiliza **Variáveis de Ambiente (`.env`)** para proteger credenciais confidenciais de banco de dados.
+- Conecta-se ao banco de dados **Supabase** para buscar ou persistir dados estruturados.
+- Processa os dados com **Pandas** e alimenta o modelo de **Regressão Linear** para gerar previsões de preço de forma instantânea.
+
+### 3. Deploy em Produção (Render)
+A aplicação está totalmente funcional e hospedada na nuvem através do **Render**, utilizando contêineres e gerenciamento automatizado de processos com Gunicorn e concorrência web ajustada nativamente.
 
 ---
 
-## O que foi utilizado⚒️
+## 📸 Demonstrações Visuais (Screenshots)
 
-### Tecnologias e bibliotecas
+### Interface de Avaliação de Veículos
+*Layout limpo e moderno focado na experiência do usuário para descobrir o preço estimado do veículo.*
+<img width="1024" height="456" alt="image" src="https://github.com/user-attachments/assets/e668ef76-72a1-4b79-aab1-9165136fff93" />
 
-- Python
-- Flask
-- Flask-CORS
-- pandas
-- scikit-learn
+### API Backend em Execução (Local)
+*Servidor Flask rodando localmente com suporte a logs detalhados e recebendo requisições do tipo POST.*
+<img width="835" height="204" alt="image" src="https://github.com/user-attachments/assets/05ab1678-b133-41f4-89b8-08da21e05e4e" />
 
-### Conceitos breves utilizados
+### Testes de Requisição com Postman
+*Validação do endpoint `/prever` enviando um JSON com os atributos do veículo e recebendo o preço predito de forma instantânea.*
+<img width="1485" height="648" alt="image" src="https://github.com/user-attachments/assets/98baa54f-a6ab-4bc3-883b-9093a159a440" />
 
-- Regressão Linear: técnica de Machine Learning usada para prever valores contínuos, como preços.
-- Features: são as entradas do modelo, ou seja, as características utilizadas para fazer a previsão.
-- Target: é o valor que o modelo tenta prever, neste caso o preço do carro.
-- API: é uma interface que permite que outras aplicações, como sites e aplicativos, enviem dados e recebam respostas automaticamente.
-
----
-
-## Estrutura do projeto🏠
-
-- app.py: arquivo principal com a API e o modelo treinado.
-- dataset_carros_usados_2.csv: arquivo com os dados usados para treinar o modelo.
-- requirements.txt: dependências do projeto.
+### Dashboard de Deploy (Render)
+*Logs de execução da instância em produção no Render mostrando o serviço Live e rodando via Gunicorn.*
+<img width="1522" height="820" alt="image" src="https://github.com/user-attachments/assets/a4d68bbe-30f3-4b51-916e-f0d0e3b1d97f" />
 
 ---
 
-## Como usar o projeto
+## 🔧 Como Executar o Projeto Localmente
 
-### 1. Instale as dependências
-
-No terminal, dentro da pasta do projeto, execute:
-
-```bash
-pip install -r requirements.txt
-```
-
-### 2. Execute a aplicação
-
-```bash
-python app.py
-```
-
-A API ficará disponível localmente em:
-
-```text
-http://127.0.0.1:8000
-```
-
----
-
-## Como consumir a API
-
-### Endpoint GET
-
-O endpoint raiz verifica se a API está online.
-
-```bash
-curl http://127.0.0.1:8000/
-```
-
-Resposta esperada:
-
-```json
-{
-  "Resposta": "API online, Flask rodando corretamente"
-}
-```
-
-### Endpoint POST
-
-Para fazer uma previsão, envie um JSON para o endpoint /prever com os campos abaixo:
-
-```json
-{
-  "ano": 2018,
-  "quilometragem": 50000,
-  "motor": 2.0,
-  "num_revisoes": 3
-}
-```
-
-Exemplo com curl:
-
-```bash
-curl -X POST http://127.0.0.1:8000/prever \
-  -H "Content-Type: application/json" \
-  -d '{"ano": 2018, "quilometragem": 50000, "motor": 2.0, "num_revisoes": 3}'
-```
-
-Resposta esperada:
-
-```json
-{
-  "preco": 65000.0
-}
-```
-
----
-
-## Para que este projeto pode ser usado
-
-Este projeto pode ser utilizado para:
-
-- estimar o valor de um carro usado
-- criar uma ferramenta de avaliação automotiva
-- integrar com sites ou sistemas que precisam de uma avaliação rápida
-- servir como base para projetos mais avançados de Machine Learning
-
-Ele é especialmente útil em contextos de marketplaces, plataformas de compra e venda e aplicações voltadas ao setor automotivo.
-
----
-
-## Links importantes
-
-- API (método GET): https://projetofinal-an-lise-dados-e-fundamentos.onrender.com/
-- API (método POST): https://projetofinal-an-lise-dados-e-fundamentos.onrender.com/prever
-- Site: https://carrovalor.lovable.app/
-
----
-
-## Observação final
-
-Este projeto mostra como é possível combinar dados, Machine Learning e uma API em uma solução simples, útil e de fácil entendimento. O objetivo não é apenas prever preços, mas também demonstrar como um modelo pode ser colocado em produção para ser consumido por diferentes aplicações.
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/rafzsxl/ProjetoFinal-An-lise-Dados-e-Fundamentos_IA.git](https://github.com/rafzsxl/ProjetoFinal-An-lise-Dados-e-Fundamentos_IA.git)
+   cd ProjetoFinal-An-lise-Dados-e-Fundamentos_IA
